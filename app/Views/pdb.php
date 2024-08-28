@@ -29,29 +29,33 @@
 
          /* Style untuk tombol back */
          .btn-back {
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin: 20px 0 20px 10px; /* Tambahkan margin kiri (20px) untuk menjauhkan tombol dari pinggir kiri */
             background-color: white; /* Warna latar belakang putih */
-            color: black; /* Warna teks hitam */
-            border: 2px solid black; /* Batas tombol hitam */
+            color: black; /* Warna ikon hitam */
+            border: none; /* Batas tombol hitam */
             padding: 5px 10px; /* Padding untuk tombol */
             text-decoration: none; /* Hilangkan garis bawah pada link */
             display: inline-flex; /* Gunakan inline-flex untuk menampung ikon */
             align-items: center; /* Rata tengah secara vertikal */
             border-radius: 10px; /* Buat tombol lebih membulat */
-        }
-        .btn-back i {
+          }
+          .btn-back i {
             font-size: 1.2rem; /* Ukuran ikon panah */
-        }
-        .btn-back:hover {
+          }
+          .btn-back:hover {
             background-color: black; /* Warna latar belakang saat hover */
             color: white; /* Warna teks saat hover */
-        }
-
+          }
+          .btn-back span {
+            display: none; /* Sembunyikan teks */
+          }
     </style>
+  
+  <!-- Tambahkan link Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- Tombol Back ke Home -->
-  <a href="/home" class="btn btn-secondary btn-back">Kembali</a>
+  <a href="/" class="btn btn-secondary btn-back">Kembali</a>
 
   <!-- Favicons -->
   <link href="/img/favicon.png" rel="icon">
@@ -93,44 +97,31 @@
   ============================-->
   <header id="header">
     <div class="container">
-      
       <div id="logo" class="pull-left">
         <h1><img src="/img/bps.png" alt="" class="me-3" style="height: 0.8em; width: auto; vertical-align: middle;" /><a href="#body" class="scrollto">B<span>P</span>S</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
       </div>
-
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li class="menu-active"><a href="#body">Beranda</a></li>
-          <li><a href="#about">Tentang</a></li>
-          <li><a href="#services">PDB Lapangan Usaha</a></li>
-          <li class="menu-has-children"><a href="">Admin</a>
-            <ul>
-              <li><a href="#">Log In</a></li>
-              <li><a href="#"></a></li>
-            </ul>
-          </li>
-          <li><a href="#contact">Informasi Publik</a></li>
-        </ul>
-      </nav><!-- #nav-menu-container -->
-    </div>
-  </header><!-- #header -->
-
+   
   <div class="container mt-5">
         <h2 class="text-center">PDB Menurut Lapangan Usaha (Milyar Rupiah)</h2>
+        <h3 class="text-center">Kategori 1</h3>
         
-        <!-- Dropdown untuk memilih tahun -->
+      <!-- Dropdown untuk memilih tahun -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="form-group">
             <label for="select-year">Pilih Tahun:</label>
-            <select class="form-control form-control-sm dropdown-sm" id="select-year" style="width: auto; display: inline-block;">>
-                <option value="2020">2020</option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
-                <option value="2024">2024</option>
+            <select class="form-control form-control-sm dropdown-sm" id="select-year" style="width: auto; display: inline-block;" onchange="filterByYear()">
+              <option value="all" <?= $tahun == 'all' ? 'selected' : '' ?>>All</option>
+              <option value="2020" <?= $tahun == 2020 ? 'selected' : '' ?>>2020</option>
+              <option value="2021" <?= $tahun == 2021 ? 'selected' : '' ?>>2021</option>
+              <option value="2022" <?= $tahun == 2022 ? 'selected' : '' ?>>2022</option>
+              <option value="2023" <?= $tahun == 2023 ? 'selected' : '' ?>>2023</option>
+              <option value="2024" <?= $tahun == 2024 ? 'selected' : '' ?>>2024</option>
             </select>
         </div>
+        <a href="<?= site_url('pdb3/downloadExcel') ?>" class="btn btn-primary btn-download-excel"><i class="fa fa-download me-3"></i>Download Excel</a>
+      </div>
 
         <table class="table table-hover ">
                 <thead>
@@ -141,24 +132,31 @@
                         <th scope="col ">Triwulan III</th>
                         <th scope="col ">Triwulan IV</th>
                         <th scope="col ">Tahunan</th>
+                        <th scope="col ">Tahun</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($cat1 as $item): ?>
-                    <tr>
-                        <td><?= $item['Lapangan Usaha'] ?></td>
-                        <td><?= $item['Triwulan I'] ?></td>
-                        <td><?= $item['Triwulan II'] ?></td>
-                        <td><?= $item['Triwulan III'] ?></td>
-                        <td><?= $item['Triwulan IV'] ?></td>
+                      <?php if ($tahun == 'all' && $item['Tahun'] >= 2020 && $item['Tahun'] <= 2024 || $item['Tahun'] == $tahun): ?>
+                      <tr>
+                        <td><?= $item['Lapangan_Usaha'] ?></td>
+                        <td><?= $item['Triwulan_I'] ?></td>
+                        <td><?= $item['Triwulan_II'] ?></td>
+                        <td><?= $item['Triwulan_III'] ?></td>
+                        <td><?= $item['Triwulan_IV'] ?></td>
                         <td><?= $item['Tahunan'] ?></td>
-                        <td>
-                        </td>
-                    </tr>
+                        <td><?= $item['Tahun'] ?></td>
+                      </tr>
+                      <?php endif ?>
                     <?php endforeach ?>
                 </tbody>
             </table>
-    </div>
+          
+            <!-- Canvas untuk Chart.js -->
+            <div class="mt-5">
+              <canvas id="pdbChart"></canvas>
+            </div>
+  </div>
 
   <!--==========================
     Footer
@@ -205,10 +203,68 @@
 
   <!-- Script untuk mengubah tahun sesuai dropdown -->
   <script>
-        document.getElementById('select-year').addEventListener('change', function() {
-            var year = this.value;
-            document.getElementById('year-header').textContent = 'Tahun ' + year;
+    function filterByYear() {
+      var year = document.getElementById('select-year').value;
+      window.location.href = "/pdb?tahun=" + year;
+    }
+
+    // Fungsi untuk membuat dan memperbarui chart
+    function createChart(labels, data) {
+        var ctx = document.getElementById('pdbChart').getContext('2d');
+        if (window.pdbChart) {
+            window.pdbChart.destroy();
+        }
+        window.pdbChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'PDB Lapangan Usaha',
+                    data: data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
         });
+    }
+
+    // Script untuk mengubah tahun sesuai dropdown
+    function filterByYear() {
+        var year = document.getElementById('select-year').value;
+        window.location.href = "/pdb?tahun=" + year;
+    }
+
+    // Ambil data dari tabel dan buat chart
+    document.addEventListener('DOMContentLoaded', function() {
+        var rows = document.querySelectorAll('table tbody tr');
+        var labels = [];
+        var data = [];
+
+        rows.forEach(function(row) {
+            var cells = row.querySelectorAll('td');
+            labels.push(cells[0].textContent); // PDB Lapangan Usaha
+            data.push(parseFloat(cells[5].textContent)); // Tahunan
+        });
+
+        createChart(labels, data);
+      });
+
+      function downloadExcel() {
+      var year = document.getElementById('select-year').value;
+      window.location.href = "/pdb/downloadExcel?tahun=" + year;
+      }
   </script>
 
 </body>

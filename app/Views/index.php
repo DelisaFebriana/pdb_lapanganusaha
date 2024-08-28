@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Badan Pusat Statistika</title>
@@ -36,6 +37,15 @@
   ======================================================= -->
 </head>
 
+<style>
+  .subtitle {
+    color: black; /* Warna teks hitam */
+    font-size: 0.9rem; /* Ukuran font lebih kecil dari PDB */
+    margin-top: 5px; /* Jarak antara subtitle dengan judul */
+    display: block;
+  }
+  </style>
+
 <body id="body">
 
   <!--==========================
@@ -55,12 +65,7 @@
           <li class="menu-active"><a href="#body">Beranda</a></li>
           <li><a href="#about">Tentang</a></li>
           <li><a href="#services">PDB Lapangan Usaha</a></li>
-          <li class="menu-has-children"><a href="">Admin</a>
-            <ul>
-              <li><a href="#">Log In</a></li>
-              <li><a href="#"></a></li>
-            </ul>
-          </li>
+          <li><a href="/login">LogIn</a></li>
           <li><a href="#contact">Informasi Publik</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
@@ -103,22 +108,17 @@
                 pemerintah
               </h3>
 
-              <h3>
-                Dalam penyusunan PDB menurut lapangan usaha, klasifikasi yang 
-                digunakan mencakup tujuh belas kategori lapangan usaha yaitu: Pertanian, Kehutanan, 
-                dan Perikanan; Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan
-                Gas; Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang; Konstruksi; Perdagangan
-                Besar dan Eceran, Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan
-                Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi;
-                Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial
-                Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial dan Jasa Lainnya. 
-              </h3>
-
             <ul>
-              <li><i class="ion-android-checkmark-circle"></i> PDB Menurut Lapangan Usaha (Milyar Rupiah), 2020-2024</li>
-              <li><i class="ion-android-checkmark-circle"></i> Visualisasi</li>
+              <li><i class="ion-android-checkmark-circle"></i> PDB Menurut Lapangan Usaha (Milyar Rupiah), 2020-2024 Kategori 1</li>
+              <li style="color:gray; margin-left:20px;">Mencakup Pertanian, Kehutanan, dan Perikanan Pertambangan dan Penggalian, Industri Pengolahan, Pengadaan Listrik dan Gas, Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang, Kontruksi, Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor, Transportasi dan Pergudangan, Penyedia Akomodasi dan Makan Minum,
+                                                                  Informasi dan Komunikasi, Jasa Keuangan dan Asuransi, Real Estate, Jasa Perusahaan, Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib, Jasa Pendidikan, Jasa Kesehatan dan Kegiatan Sosial, Jasa lainnya </li>
+              <li><i class="ion-android-checkmark-circle"></i> PDB Menurut Lapangan Usaha (Milyar Rupiah), 2020-2024 Kategori 2</li>
+              <li style="color:gray; margin-left:20px;">Mencakup Pertanian, Peternakan, Perburuan dan Jasa Pertanian, Kehutanan dan Penebangan Kayu, Perikanan, Pertambangan Minyak, Gas dan Panas Bumi, Pertambangan Batubara dan Lignit, Pertambangan Bijih Logam, Pertambangan dan Penggalian Lainnya, Industri Batubara dan Pengilangan Migas, Industri Pengolahan Non Migas, Ketenagalistrikan,
+                                                                 Pengadaan Gas dan Produksi Es, Perdagangan Mobil, Sepeda Motor dan Reparasinya, Perdagangan Besar dan Eceran, Bukan Mobil dan Sepeda Motor, Angkutan Rel, Angkutan Darat, Angkutan Laut, Angkutan Sungai Danau dan Penyebrangan, Angkutan Udara, Pergudangan dan Jasa Penunjang Angkutan; Pos dan Kurir, Penyediaan Akomodasi, Penyediaan Makan Minum, Jasa Perantara Keuangan, Asuransi dan Dana Pensiun, Jasa Keuangan Lainnya, Jasa Penunjang Keuangan </li>
+              <li><i class="ion-android-checkmark-circle"></i> PDB Menurut Lapangan Usaha (Milyar Rupiah), 2020-2024 Kategori 3</li>
+              <li style="color:gray; margin-left:20px;"> Mencakup Tanaman Pangan, Tanaman Holtikultura, Tanaman Perkebunan, Peternakan, Jasa Pertanian dan Perburuan, Industri Makanan dan Minuman, Industri Pengolahan Tembakau, Industri Tekstil dan pakaian Jadi, Industri Kulit, Barang dari Kulit dan Alas Kaki, Industri Kayu, Barang dari Kayu dan Gabus dan Barang Anyaman dari Bambu, Rotan dan Sejenisnya, Industri Kertas dan Barang dari Kertas; Percetakan dan Reproduksi Media Rekaman
+                                                                  Industri Kimia, Farmasi dan Obat Tradisional, Industri Karet, Barang dari Karet dan Plastik, Industri Barang Galian bukan Logam, Industri Logam Dasar, Industri Barang Logam; Komputer, Barang Elektronik, Optik; dan Peralatan Listrik, Industri Mesin dan Perlengkapan, Industri Alat Angkutan, Industri Furnitur, Industri Pengolahan Lainnya; Jasa Reparasi dan Pemasangan Mesin dan Peralatan </li>
             </ul>
-
           </div>
         </div>
 
@@ -140,6 +140,23 @@
             <div class="box wow fadeInLeft">
               <div class="icon"><i class="fa fa-bar-chart"></i></div>
               <h4 class="title"><a href="/pdb">PDB Menurut Lapangan Usaha (Milyar Rupiah), 2020-2024</a></h4>
+              <h5 class="subtitle"><a href="/pdb">Kategori 1</a></h5>
+            </div>
+          </div>
+
+          <div class="col-lg-6 d-flex">
+            <div class="box wow fadeInLeft">
+              <div class="icon"><i class="fa fa-bar-chart"></i></div>
+              <h4 class="title"><a href="/pdb2">PDB Menurut Lapangan Usaha (Milyar Rupiah), 2020-2024</a></h4>
+              <h5 class="subtitle"><a href="/pdb2">Kategori 2</a></h5>
+            </div>
+          </div>
+
+          <div class="col-lg-6 d-flex">
+            <div class="box wow fadeInLeft">
+              <div class="icon"><i class="fa fa-bar-chart"></i></div>
+              <h4 class="title"><a href="/pdb3">PDB Menurut Lapangan Usaha (Milyar Rupiah), 2020-2024</a></h4>
+              <h5 class="subtitle"><a href="/pdb3">Kategori 3</a></h5>
             </div>
           </div>
 
